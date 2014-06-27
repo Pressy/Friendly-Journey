@@ -11,14 +11,42 @@
 |
 */
 
-Route::get('/', function()
-{
-	return "View::make('hello')";
-
+Route::get('/', function(){
+	return View::make('');
 });
+
+Route::get('account/register',array(
+						'as'   => 'user-register',
+						'uses' => 'RegisterController@getRegister'
+					)
+);
+
+Route::get('account/login',array(
+						'as'   => 'user-login',
+						'uses' => 'LoginController@getLogin'
+					)
+);
+
+Route::post('account/register',array(
+						'as'   => 'user-register-post',
+						'uses' => 'RegisterController@postRegister'
+					)
+);
+
+Route::post('account/login',array(
+						'as'   => 'user-login-post',
+						'uses' => 'LoginController@postLogin'
+					)
+);
 
 Route::get('/use',function()
 {
 	return "Users!";
 });
-Route::get('users','UserController@getIndex');
+
+Route::get('users',function()
+{
+	$userp = DB::select('select email from users where id=?',array(2)) ;//User::all();
+	return View::make('users');//->with('users',$userp);
+});
+
