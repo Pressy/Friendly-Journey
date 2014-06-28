@@ -19,8 +19,8 @@
 
 		<input type="submit" value="Login"/>
 
-		@if(Session::has('global'))
-			{{ Session::get('global') }} 
+		@if(Session::has('flash_notice'))
+			{{ Session::get('flash_notice') }} 
 		@endif
 
 	</form>

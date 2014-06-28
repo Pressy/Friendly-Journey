@@ -37,8 +37,19 @@
 				if($auth){
 					return Redirect::intended('/');
 				}else{
-					return Redirect::route('user-login')
-							->with('global','Wrong Username or Password.');
+					$auth = Auth::attempt(
+						array(
+							'email'    => $username,
+							'password' => $password
+						),
+						$remember
+					);
+					if($auth){
+						return Redirect::intended('/');
+					}else{
+						return Redirect::route('user-login')
+								->with('flash_notice','Wrong Username or Password.');
+					}
 				}
 			}
 		}
