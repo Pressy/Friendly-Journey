@@ -13,19 +13,19 @@
 
 Route::get('/',array(
 				'as'   => 'home',
-				'uses' => 'HomeController@getHome'
+				'uses' => 'PageController@getHome'
 				)
 );//->before('guest');
 
 Route::get('account/register',array(
 						'as'   => 'user-register',
-						'uses' => 'RegisterController@getRegister'
+						'uses' => 'PageController@getRegister'
 					)
 )->before('guest');
 
 Route::get('account/login',array(
 						'as'   => 'user-login',
-						'uses' => 'LoginController@getLogin'
+						'uses' => 'PageController@getLogin'
 					)
 )->before('guest');
 
@@ -65,22 +65,23 @@ Route::get('activate/{id}/{key}',function($id,$key){
 
 Route::get('logout',array(
 					'as'   => 'user-logout',
-					'uses' => 'LogoutController@getLogout'
+					'uses' => 'AccountController@getLogout'
 					)
 );
 		
 Route::post('account/register',array(
 						'as'   => 'user-register-post',
-						'uses' => 'RegisterController@postRegister'
+						'uses' => 'AccountController@postRegister'
 					)
 );
 
 Route::post('account/login',array(
 						'as'   => 'user-login-post',
-						'uses' => 'LoginController@postLogin'
+						'uses' => 'AccountController@postLogin'
 					)
 );
 
+/*
 Route::get('/use',function()
 {
 	return "Users!";
@@ -91,4 +92,6 @@ Route::get('users',function()
 	$userp = DB::select('select email from users where id=?',array(2)) ;//User::all();
 	return View::make('users');//->with('users',$userp);
 });
+*/
+
 
